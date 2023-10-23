@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class MainClass {
@@ -11,7 +12,7 @@ public class MainClass {
     static PersonNameDataGroup personNameDataGroup = new PersonNameDataGroup();
     public static void main(String[] args) throws FileNotFoundException {
 
-        personNameDataGroup.getPersonsByFamily(getAllPersons(),"Куев");
+        personNameDataGroup.getPersonsByFamily(getAllPersons(), getFamily());
 
     }
     public static ArrayList<Person> getAllPersons() {
@@ -39,6 +40,10 @@ public class MainClass {
             throw new RuntimeException(e);
         }
         return personList;
+    }
+    public static String getFamily() {
+        Scanner console = new Scanner(System.in);
+        return console.nextLine();
     }
 
 
