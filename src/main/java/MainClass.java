@@ -1,8 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -10,9 +5,11 @@ public class MainClass {
     static ClassroomDataGroups classroomDataGroups = new ClassroomDataGroups();
     static PersonAgeDataGroups personAgeDataGroups = new PersonAgeDataGroups();
     static PersonNameDataGroup personNameDataGroup = new PersonNameDataGroup();
+
     public static void main(String[] args) {
-        getPersonsByFamily();
         getPersonsByGroup(10, 11);
+        getPersonsByAge(14);
+        getPersonsByFamily();
 
     }
 
@@ -21,6 +18,7 @@ public class MainClass {
         Scanner console = new Scanner(System.in);
         return console.nextLine();
     }
+
     public static void getPersonsByGroup(int group1, int group2) {
         Person[] persons1 = classroomDataGroups.getPersons(group1);
         Person[] persons2 = classroomDataGroups.getPersons(group2);
@@ -32,8 +30,10 @@ public class MainClass {
             number += (double) (obj.getPhysics() + obj.getMathematics() + obj.getRus() + obj.getLiterature() + obj.getGeometry() + obj.getInformatics()) / 6;
         }
         double middle = (number / persons.length);
-        System.out.println("Средняя оценка в " + group1 + " и " + group2 + " классах: " + middle);
+        String result = String.format("%.1f", middle);
+        System.out.println("Средний балл в " + group1 + " и " + group2 + " классах: " + result + "\n");
     }
+
     public static void getPersonsByFamily() {
         System.out.println("Введите фамилию студента: ");
         Scanner console = new Scanner(System.in);
@@ -42,10 +42,23 @@ public class MainClass {
             if (obj.getFamily().equals(family)) {
                 System.out.println(obj.getFamily() + " " + obj.getName());
             }
-
         }
     }
 
+    public static void getPersonsByAge(int age) {
+        System.out.println("Отличники среди студентов старше 14 лет:");
+        age += 1;
+        while ((age < 18)) {
+            for (Person obj : personAgeDataGroups.getPersons(age)) {
+                int number = obj.getPhysics() + obj.getMathematics() + obj.getRus() + obj.getLiterature() + obj.getGeometry() + obj.getInformatics();
+                if (number == 30) {
+                    System.out.println(obj.getFamily() + " " + obj.getName());
+                }
+            }
+            age++;
+        }
+        System.out.println("");
+    }
 
 
 }
