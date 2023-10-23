@@ -1,13 +1,5 @@
 public class Person {
 
-
-    public Person(String family, String name, int age, int group) {
-        this.family = family;
-        this.name = name;
-        this.age = age;
-        this.group = group;
-    }
-
     String family;
     String name;
     int age;
@@ -19,8 +11,6 @@ public class Person {
     int geometry;
     int informatics;
 
-    public Person(String family, String name) {
-    }
 
     public String getFamily() {
         return family;
@@ -74,10 +64,5 @@ public class Person {
         this.literature = literature;
         this.geometry = geometry;
         this.informatics = informatics;
-    }
-
-
-    public Person(String family) {
-        this.family = family;
     }
 }

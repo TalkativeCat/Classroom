@@ -10,7 +10,7 @@ public class MainClass {
     static ClassroomDataGroups classroomDataGroups = new ClassroomDataGroups();
     static PersonAgeDataGroups personAgeDataGroups = new PersonAgeDataGroups();
     static PersonNameDataGroup personNameDataGroup = new PersonNameDataGroup();
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         getPersonsByFamily();
         getPersonsByGroup(10, 11);
 
