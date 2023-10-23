@@ -12,8 +12,9 @@ public class MainClass {
     static PersonNameDataGroup personNameDataGroup = new PersonNameDataGroup();
     public static void main(String[] args) throws FileNotFoundException {
 
-        //personNameDataGroup.getPersonsByFamily(getAllPersons(), getFamily());
         classroomDataGroups.getPersonsByGroup(getAllPersons(), 14,10,11);
+        personNameDataGroup.getPersonsByFamily(getAllPersons(), getFamily());
+
 
     }
     public static ArrayList<Person> getAllPersons() {
@@ -43,6 +44,7 @@ public class MainClass {
         return personList;
     }
     public static String getFamily() {
+        System.out.println("Введите фамилию студента: ");
         Scanner console = new Scanner(System.in);
         return console.nextLine();
     }
