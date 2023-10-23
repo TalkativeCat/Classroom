@@ -7,12 +7,13 @@ import java.util.Scanner;
 
 
 public class MainClass {
-    ClassroomDataGroups classroomDataGroups = new ClassroomDataGroups();
-    PersonAgeDataGroups personAgeDataGroups = new PersonAgeDataGroups();
+    static ClassroomDataGroups classroomDataGroups = new ClassroomDataGroups();
+    static PersonAgeDataGroups personAgeDataGroups = new PersonAgeDataGroups();
     static PersonNameDataGroup personNameDataGroup = new PersonNameDataGroup();
     public static void main(String[] args) throws FileNotFoundException {
 
-        personNameDataGroup.getPersonsByFamily(getAllPersons(), getFamily());
+        //personNameDataGroup.getPersonsByFamily(getAllPersons(), getFamily());
+        classroomDataGroups.getPersonsByGroup(getAllPersons(), 14,10,11);
 
     }
     public static ArrayList<Person> getAllPersons() {
