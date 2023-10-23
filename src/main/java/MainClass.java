@@ -11,42 +11,39 @@ public class MainClass {
     static PersonAgeDataGroups personAgeDataGroups = new PersonAgeDataGroups();
     static PersonNameDataGroup personNameDataGroup = new PersonNameDataGroup();
     public static void main(String[] args) throws FileNotFoundException {
-
-        classroomDataGroups.getPersonsByGroup(getAllPersons(), 14,10,11);
-        personNameDataGroup.getPersonsByFamily(getAllPersons(), getFamily());
-
+        getPersonsByFamily();
+        getPersonsByGroup(10, 11);
 
     }
-    public static ArrayList<Person> getAllPersons() {
-        ArrayList<Person> personList = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("students.csv"))) {
-            br.readLine();
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(";");
-                String family = data[0];
-                String name = data[1];
-                int age = Integer.parseInt(data[2]);
-                int group = Integer.parseInt(data[3]);
-                int physics = Integer.parseInt(data[4]);
-                int mathematics = Integer.parseInt(data[5]);
-                int rus = Integer.parseInt(data[6]);
-                int literature = Integer.parseInt(data[7]);
-                int geometry = Integer.parseInt(data[8]);
-                int informatics = Integer.parseInt(data[9]);
-                Person person = new Person(family, name, age, group, physics, mathematics, rus, literature, geometry, informatics);
-                personList.add(person);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return personList;
-    }
     public static String getFamily() {
         System.out.println("Введите фамилию студента: ");
         Scanner console = new Scanner(System.in);
         return console.nextLine();
+    }
+    public static void getPersonsByGroup(int group1, int group2) {
+        Person[] persons1 = classroomDataGroups.getPersons(group1);
+        Person[] persons2 = classroomDataGroups.getPersons(group2);
+        Person[] persons = new Person[persons1.length + persons2.length];
+        System.arraycopy(persons1, 0, persons, 0, persons1.length);
+        System.arraycopy(persons2, 0, persons, persons1.length, persons2.length);
+        double number = 0;
+        for (Person obj : persons) {
+            number += (double) (obj.getPhysics() + obj.getMathematics() + obj.getRus() + obj.getLiterature() + obj.getGeometry() + obj.getInformatics()) / 6;
+        }
+        double middle = (number / persons.length);
+        System.out.println("Средняя оценка в " + group1 + " и " + group2 + " классах: " + middle);
+    }
+    public static void getPersonsByFamily() {
+        System.out.println("Введите фамилию студента: ");
+        Scanner console = new Scanner(System.in);
+        String family = console.nextLine();
+        for (Person obj : personNameDataGroup.getPersons(family)) {
+            if (obj.getFamily().equals(family)) {
+                System.out.println(obj.getFamily() + " " + obj.getName());
+            }
+
+        }
     }
 
 
