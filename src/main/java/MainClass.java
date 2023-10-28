@@ -12,8 +12,8 @@ public class MainClass {
     // Поскольку для вычисления средней оценки нужно будет перебрать все записи, подойдет обычный цикл
     public static void getPersonsByGroup(int group1, int group2) {
         DataGroup<Integer> dataGroupGroup = new DataGroup<>();
-        Person[] persons1 = dataGroupGroup.addPerson(Person::getGroup, group1);
-        Person[] persons2 =dataGroupGroup.addPerson(Person::getGroup, group2);
+        Person[] persons1 = dataGroupGroup.getPersons(Person::getGroup, group1);
+        Person[] persons2 =dataGroupGroup.getPersons(Person::getGroup, group2);
         Person[] persons = new Person[persons1.length + persons2.length];
         System.arraycopy(persons1, 0, persons, 0, persons1.length);
         System.arraycopy(persons2, 0, persons, persons1.length, persons2.length);
@@ -34,28 +34,28 @@ public class MainClass {
         Scanner console = new Scanner(System.in);
         String family = console.nextLine();
         int left = 0;
-        int right = dataGroupName.addPerson(Person::getFamily, family).length - 1;
+        int right = dataGroupName.getPersons(Person::getFamily, family).length - 1;
         boolean found = false;
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            int compareResult = dataGroupName.addPerson(Person::getFamily, family)[mid].getFamily().compareTo(family);
+            int compareResult = dataGroupName.getPersons(Person::getFamily, family)[mid].getFamily().compareTo(family);
 
             if (compareResult == 0) {
                 // Строка family найдена, выводим ее в консоль
-                System.out.println(dataGroupName.addPerson(Person::getFamily, family)[mid].getFamily() + " " + dataGroupName.addPerson(Person::getFamily, family)[mid].getName());
+                System.out.println(dataGroupName.getPersons(Person::getFamily, family)[mid].getFamily() + " " + dataGroupName.getPersons(Person::getFamily, family)[mid].getName());
                 found = true;
 
                 // Проверяем наличие дополнительных совпадающих строк слева
                 int index = mid - 1;
-                while (index >= 0 && dataGroupName.addPerson(Person::getFamily, family)[index].getFamily().equals(family)) {
-                    System.out.println(dataGroupName.addPerson(Person::getFamily, family)[index].getFamily() + " " + dataGroupName.addPerson(Person::getFamily, family)[index].getName());
+                while (index >= 0 && dataGroupName.getPersons(Person::getFamily, family)[index].getFamily().equals(family)) {
+                    System.out.println(dataGroupName.getPersons(Person::getFamily, family)[index].getFamily() + " " + dataGroupName.getPersons(Person::getFamily, family)[index].getName());
                     index--;
                 }
 
                 // Проверяем наличие дополнительных совпадающих строк справа
                 index = mid + 1;
-                while (index < dataGroupName.addPerson(Person::getFamily, family).length && dataGroupName.addPerson(Person::getFamily, family)[index].getFamily().equals(family)) {
-                    System.out.println(dataGroupName.addPerson(Person::getFamily, family)[index].getFamily() + " " + dataGroupName.addPerson(Person::getFamily, family)[index].getName());
+                while (index < dataGroupName.getPersons(Person::getFamily, family).length && dataGroupName.getPersons(Person::getFamily, family)[index].getFamily().equals(family)) {
+                    System.out.println(dataGroupName.getPersons(Person::getFamily, family)[index].getFamily() + " " + dataGroupName.getPersons(Person::getFamily, family)[index].getName());
                     index++;
                 }
                 break;
@@ -79,7 +79,7 @@ public class MainClass {
         System.out.println("Отличники среди студентов старше 14 лет:");
         age += 1;
         while ((age < 18)) {
-            for (Person obj : dataGroupAge.addPerson(Person::getAge, age)) {
+            for (Person obj : dataGroupAge.getPersons(Person::getAge, age)) {
                 int number = obj.getPhysics() + obj.getMathematics() + obj.getRus() + obj.getLiterature() + obj.getGeometry() + obj.getInformatics();
                 if (number == 30) {
                     System.out.println(obj.getFamily() + " " + obj.getName());
