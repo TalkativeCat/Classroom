@@ -8,7 +8,7 @@ private final HashMap<Character, List<Person>> sortedMap = new HashMap<>();
 
     public void addPerson() {
 
-        for (Person persons : reader.readCsv()) {
+        for (Person persons : reader.loadDataFromCsv()) {
             char firstLetter = persons.getFamily().charAt(0);
             sortedMap.computeIfAbsent(firstLetter, k -> new ArrayList<>()).add(persons);
         }

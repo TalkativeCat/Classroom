@@ -8,7 +8,7 @@ class DataGroup<T> {
 
     public void addPerson(GroupCriterion<T> classifier) {
 
-        for (Person persons : reader.readCsv()) {
+        for (Person persons : reader.loadDataFromCsv()) {
             T key = classifier.apply(persons);
             sortedMap.computeIfAbsent(key, k -> new ArrayList<>()).add(persons);
         }

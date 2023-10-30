@@ -9,7 +9,7 @@ public class ClassroomDataGroups {
 
     public void addPerson() {
 
-        for (Person persons : reader.readCsv()) {
+        for (Person persons : reader.loadDataFromCsv()) {
             Integer group = persons.getGroup();
             sortedMap.computeIfAbsent(group, k -> new ArrayList<>()).add(persons);
         }
