@@ -3,12 +3,12 @@ import java.util.HashMap;
 
 class DataGroup<T> {
     Reader reader = new Reader();
-
+    StudentService studentService = new StudentService(reader);
     private final HashMap<T, ArrayList<Person>> sortedMap = new HashMap<>();
 
     public void addPerson(GroupCriterion<T> classifier) {
 
-        for (Person persons : reader.loadDataFromCsv()) {
+        for (Person persons : studentService.getStudents()) {
             T key = classifier.apply(persons);
             sortedMap.computeIfAbsent(key, k -> new ArrayList<>()).add(persons);
         }
