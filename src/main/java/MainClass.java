@@ -3,9 +3,15 @@ import java.util.Scanner;
 public class MainClass {
 
     public static void main(String[] args) {
-        getPersonsByGroup(10, 11);
-        getPersonsByAge(14);
-        getPersonsByFamilyBinary();
+
+        Reader reader = new Reader();
+        StudentService studentService = new StudentService(reader);
+        CommandBuilder commandBuilder = new CommandBuilder(studentService);
+        Command getPersonsByAgeCommand = commandBuilder.setAge(14).ExecuteGetByAge();
+        getPersonsByAgeCommand.executeGetByAge();
+////        getPersonsByGroup(10, 11);
+//        getPersonsByAge(14);
+//        getPersonsByFamilyBinary();
     }
 
     // Собираем в массивы данные учеников 10 и 11 классов, после чего склеиваем их в единый массив.
