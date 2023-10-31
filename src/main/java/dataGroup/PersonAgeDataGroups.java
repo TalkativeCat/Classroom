@@ -1,7 +1,11 @@
+package dataGroup;
+
+import dataLoad.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+// класс не используется, обработка данных переведена в DataGroup
 public class PersonAgeDataGroups {
     Reader reader = new Reader();
 

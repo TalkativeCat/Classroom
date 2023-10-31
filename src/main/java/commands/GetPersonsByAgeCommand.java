@@ -1,15 +1,21 @@
-public class GetPersonsByAgeCommand implements Command{
+package commands;
+
+import dataGroup.DataGroup;
+import dataGroup.Person;
+
+public class GetPersonsByAgeCommand implements Command {
+
 
     private int age;
 
-    public GetPersonsByAgeCommand(StudentService studentService, int age) {
+    public GetPersonsByAgeCommand(int age) {
         this.age = age;
     }
 
     @Override
-    public void executeGetByAge() {
+    public void execute() {
         DataGroup<Integer> dataGroupAge = new DataGroup<>();
-        System.out.println("Отличники среди студентов старше 14 лет:");
+        System.out.println("Отличники среди студентов старше " + age + " лет:");
         age += 1;
         while ((age < 18)) {
             for (Person obj : dataGroupAge.getPersons(Person::getAge, age)) {
@@ -23,13 +29,4 @@ public class GetPersonsByAgeCommand implements Command{
         System.out.println();
     }
 
-    @Override
-    public void executeGetByFamily() {
-
-    }
-
-    @Override
-    public void executeGetByGroup() {
-
-    }
 }

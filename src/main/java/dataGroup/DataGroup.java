@@ -1,7 +1,11 @@
+package dataGroup;
+
+import dataLoad.Reader;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class DataGroup<T> {
+public class DataGroup<T> {
     Reader reader = new Reader();
     StudentService studentService = new StudentService(reader);
     private final HashMap<T, ArrayList<Person>> sortedMap = new HashMap<>();

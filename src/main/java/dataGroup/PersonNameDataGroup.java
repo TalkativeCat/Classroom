@@ -1,7 +1,11 @@
+package dataGroup;
+
+import dataLoad.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+// класс не используется, обработка данных переведена в DataGroup
 public class PersonNameDataGroup {
     Reader reader = new Reader();
 private final HashMap<Character, List<Person>> sortedMap = new HashMap<>();
