@@ -14,7 +14,7 @@ CREATE TABLE student_grades (
     geometry INT,
     informatics INT
 );
-CREATE TABLE student_grades (
+CREATE TABLE educational_plans (
     group_name INT PRIMARY KEY,
     physics INT,
     mathematics INT,
