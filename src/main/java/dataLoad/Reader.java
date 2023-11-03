@@ -1,10 +1,16 @@
+package dataLoad;
+
+import dataGroup.Person;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Reader {
-    public ArrayList<Person> readCsv() {
+public class Reader implements DataLoader {
+
+    public List<Person> loadDataFromCsv() {
         ArrayList<Person> personList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader("students.csv"))) {

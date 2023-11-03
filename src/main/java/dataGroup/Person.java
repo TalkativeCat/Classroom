@@ -1,3 +1,5 @@
+package dataGroup;
+
 public class Person {
 
     String family;

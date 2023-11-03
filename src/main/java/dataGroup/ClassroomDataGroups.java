@@ -1,7 +1,11 @@
+package dataGroup;
+
+import dataLoad.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+// класс не используется, обработка данных переведена в DataGroup
 public class ClassroomDataGroups {
     Reader reader = new Reader();
 
@@ -9,7 +13,7 @@ public class ClassroomDataGroups {
 
     public void addPerson() {
 
-        for (Person persons : reader.readCsv()) {
+        for (Person persons : reader.loadDataFromCsv()) {
             Integer group = persons.getGroup();
             sortedMap.computeIfAbsent(group, k -> new ArrayList<>()).add(persons);
         }
