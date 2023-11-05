@@ -6,6 +6,8 @@ public class MainClass {
         Init init = new Init();
         init.initDB();
         init.addDataToDB();
+        init.addDataToEducationalPlans();
+
 
 //        if (args.length == 0) {
 //            System.out.println("Вы не ввели ни одной команды");
