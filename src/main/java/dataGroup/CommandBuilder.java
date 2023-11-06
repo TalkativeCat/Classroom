@@ -21,6 +21,9 @@ public class CommandBuilder {
             case ("getAgeFromDB"):
                 new GetPersonsByAgeCommandDB(Integer.parseInt(args[0])).execute();
                 break;
+            case ("getAverageGradesDB"):
+                new GetAverageGradesDB(Integer.parseInt(args[0]), Integer.parseInt(args[1])).execute();
+                break;
             default:
                 System.out.println("Команда не распознана, введите другую");
                 break;
