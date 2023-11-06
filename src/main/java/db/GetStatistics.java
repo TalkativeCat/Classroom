@@ -37,13 +37,13 @@ public class GetStatistics {
     }
     public void getAverageStudentGrade(String family){
         ConnectionManager.connectDB();
-        String request = "";
+        String request = "SELECT students.name, students.family, students.group_name, (physics + mathematics + rus + literature + geometry + informatics) / 6 AS average_grade FROM students JOIN student_grades ON students.person_id = student_grades.person_id WHERE students.family = '" + family + "'";
         try(PreparedStatement statement = ConnectionManager.getConnectDB().prepareStatement(request)){
             statement.execute();
             ResultSet resultSet = statement.executeQuery();
-            System.out.println("Список отличников старше " + age + " лет:");
+            System.out.println("Средняя оценка учеников с фамилией " + family + ":\n");
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("name") + " " + resultSet.getString("family"));
+                System.out.println(resultSet.getString("name") + " " + resultSet.getString("family") + ", " + resultSet.getString("group_name") + " класс, средняя оценка: " + resultSet.getString("average_grade"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
