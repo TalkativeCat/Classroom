@@ -1,6 +1,7 @@
 package dataGroup;
 
 import commands.GetPersonsByAgeCommand;
+import commands.GetPersonsByAgeCommandDB;
 import commands.GetPersonsByFamilyCommand;
 import commands.GetPersonsByGroupCommand;
 
@@ -16,6 +17,9 @@ public class CommandBuilder {
                 break;
             case ("getGroup"):
                 new GetPersonsByGroupCommand(args).execute();
+                break;
+            case ("getAgeFromDB"):
+                new GetPersonsByAgeCommandDB(Integer.parseInt(args[0])).execute();
                 break;
             default:
                 System.out.println("Команда не распознана, введите другую");

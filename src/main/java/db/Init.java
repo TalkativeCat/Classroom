@@ -12,15 +12,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Init extends Reader {
+public class Init {
     static String url = "jdbc:postgresql://localhost:5432/mydb";
     static String username = "denis";
     static String password = "denis";
+
+    public void createDBAndData() {
+        ConnectionManager.connectDB();
+        initDB();
+        addDataToDB();
+        addDataToEducationalPlans();
+        ConnectionManager.closeConnections();
+    }
     public void initDB() {
+        ConnectionManager.connectDB();
         String scriptFilePath = "src/main/java/db/init.sql";
 
-        try (Connection connection = DriverManager.getConnection(url, username, password);
-             Statement statement = connection.createStatement();
+        try (Statement statement = ConnectionManager.getConnectDB().createStatement();
              BufferedReader reader = new BufferedReader(new FileReader(scriptFilePath))) {
 
             String line;
@@ -39,16 +47,17 @@ public class Init extends Reader {
         } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
+        ConnectionManager.closeConnections();
     }
     public void addDataToEducationalPlans() {
+        ConnectionManager.connectDB();
         Reader reader = new Reader();
         StudentService studentService = new StudentService(reader);
         List<Person> personList = studentService.getStudents();
         List<Integer> groupList = new ArrayList<>();
         for (Person persons : personList) {
-            String requestStudents = "INSERT INTO educational_plans (group_name) VALUES (?)";
-            try (Connection connection = DriverManager.getConnection(url, username, password);
-                 PreparedStatement statement0 = connection.prepareStatement(requestStudents, Statement.RETURN_GENERATED_KEYS)) {
+            String request = "INSERT INTO educational_plans (group_name) VALUES (?)";
+            try (PreparedStatement statement0 = ConnectionManager.getConnectDB().prepareStatement(request, Statement.RETURN_GENERATED_KEYS)) {
                 if (!groupList.contains(persons.getGroup())) {
                     groupList.add(persons.getGroup());
                     statement0.setInt(1, persons.getGroup());
@@ -62,8 +71,10 @@ public class Init extends Reader {
                 throw new RuntimeException(e);
             }
         }
+        ConnectionManager.closeConnections();
     }
     public void addDataToDB() {
+        ConnectionManager.connectDB();
         int count = 0;
 
         Reader reader = new Reader();
@@ -74,8 +85,7 @@ public class Init extends Reader {
             String requestStudents = "INSERT INTO students (person_id, name, family, age, group_name) VALUES (?, ?, ?, ?, ?); ";
             count += 1;
 
-            try (Connection connection = DriverManager.getConnection(url, username, password);
-                 PreparedStatement statement1 = connection.prepareStatement(requestStudents, Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement statement1 = ConnectionManager.getConnectDB().prepareStatement(requestStudents, Statement.RETURN_GENERATED_KEYS)) {
 
                 statement1.setInt(1, count);
                 statement1.setString(2, persons.getName());
@@ -93,8 +103,7 @@ public class Init extends Reader {
             }
 
             String requestStudentGrades = "INSERT INTO student_grades (person_id, physics, mathematics, rus, literature, geometry, informatics) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            try (Connection connection2 = DriverManager.getConnection(url, username, password);
-                 PreparedStatement statement2 = connection2.prepareStatement(requestStudentGrades, Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement statement2 = ConnectionManager.getConnectDB().prepareStatement(requestStudentGrades, Statement.RETURN_GENERATED_KEYS)) {
 
                 statement2.setInt(1, count);
                 statement2.setInt(2, persons.getPhysics());
@@ -112,5 +121,6 @@ public class Init extends Reader {
                 throw new RuntimeException(e);
             }
         }
+        ConnectionManager.closeConnections();
     }
 }
