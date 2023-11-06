@@ -7,8 +7,6 @@ import java.util.Arrays;
 public class MainClass {
 
     public static void main(String[] args) {
-//        Init init = new Init();
-//        init.createDBAndData();
 
         if (args.length == 0) {
             System.out.println("Вы не ввели ни одной команды");

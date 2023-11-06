@@ -13,18 +13,8 @@ import java.util.List;
 
 
 public class Init {
-    static String url = "jdbc:postgresql://localhost:5432/mydb";
-    static String username = "denis";
-    static String password = "denis";
 
-    public void createDBAndData() {
-        ConnectionManager.connectDB();
-        initDB();
-        addDataToDB();
-        addDataToEducationalPlans();
-        ConnectionManager.closeConnections();
-    }
-    public void initDB() {
+    public void initDataBase() {
         ConnectionManager.connectDB();
         String scriptFilePath = "src/main/java/db/init.sql";
 

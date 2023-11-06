@@ -1,9 +1,6 @@
 package dataGroup;
 
-import commands.GetPersonsByAgeCommand;
-import commands.GetPersonsByAgeCommandDB;
-import commands.GetPersonsByFamilyCommand;
-import commands.GetPersonsByGroupCommand;
+import commands.*;
 
 public class CommandBuilder {
 
@@ -17,6 +14,9 @@ public class CommandBuilder {
                 break;
             case ("getGroup"):
                 new GetPersonsByGroupCommand(args).execute();
+                break;
+            case ("initDB"):
+                new InitDB().execute();
                 break;
             case ("getAgeFromDB"):
                 new GetPersonsByAgeCommandDB(Integer.parseInt(args[0])).execute();
