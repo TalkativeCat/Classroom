@@ -1,7 +1,7 @@
 package db;
 
-import dataGroup.Person;
-import dataGroup.StudentService;
+import model.Person;
+import services.StudentService;
 import dataLoad.Reader;
 
 import java.io.BufferedReader;

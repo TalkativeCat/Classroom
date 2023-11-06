@@ -1,4 +1,4 @@
-package dataGroup;
+package model;
 
 public class Person {
 

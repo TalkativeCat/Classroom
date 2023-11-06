@@ -1,6 +1,4 @@
-import dataGroup.CommandBuilder;
-import db.GetStatistics;
-import db.Init;
+import commands.CommandBuilder;
 
 import java.util.Arrays;
 

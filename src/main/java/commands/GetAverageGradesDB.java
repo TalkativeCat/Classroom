@@ -1,7 +1,5 @@
 package commands;
 
-import dataGroup.DataGroup;
-import dataGroup.Person;
 import db.GetStatistics;
 
 public class GetAverageGradesDB implements Command{

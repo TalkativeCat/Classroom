@@ -1,6 +1,4 @@
-package dataGroup;
-
-import commands.*;
+package commands;
 
 public class CommandBuilder {
 
@@ -21,10 +19,10 @@ public class CommandBuilder {
             case ("getAgeFromDB"):
                 new GetPersonsByAgeCommandDB(Integer.parseInt(args[0])).execute();
                 break;
-            case ("getAverageGradesDB"):
+            case ("getAverageGradesFromDB"):
                 new GetAverageGradesDB(Integer.parseInt(args[0]), Integer.parseInt(args[1])).execute();
                 break;
-            case ("getAverageStudentGrade"):
+            case ("getAverageStudentGradeFromDB"):
                 new GetAverageStudentGradeDB(args[0]).execute();
                 break;
             default:

@@ -1,6 +1,6 @@
 package dataLoad;
 
-import dataGroup.Person;
+import model.Person;
 
 import java.util.List;
 

@@ -11,7 +11,7 @@ public class GetStatistics {
         try(PreparedStatement statement = ConnectionManager.getConnectDB().prepareStatement(request)){
             statement.execute();
             ResultSet resultSet = statement.executeQuery();
-            System.out.println("Список отличников старше " + age + " лет:");
+            System.out.println("Список отличников старше " + age + " лет:\n");
             while (resultSet.next()) {
                 System.out.println(resultSet.getString("name") + " " + resultSet.getString("family"));
             }
