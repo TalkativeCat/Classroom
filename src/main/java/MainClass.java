@@ -3,8 +3,9 @@ import commands.CommandBuilder;
 import java.util.Arrays;
 
 public class MainClass {
-    //ввод команд осуществляется через аргументы, список команд доступен в классе CommandBuilder
-    //Пример команды для вывода средней оценки по предметам среди 10 и 11 классов: getAverageGradesFromDB 10 11
+    // Ввод команд осуществляется через аргументы, список команд доступен в классе CommandBuilder
+    // Пример команды для вывода средней оценки по предметам среди 10 и 11 классов: getAverageGradesFromDB 10 11
+    // Все классы, реализующе забросы к базе данных, расположены в пакете "db"
     public static void main(String[] args) {
 
         if (args.length == 0) {
