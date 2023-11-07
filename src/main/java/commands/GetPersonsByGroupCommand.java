@@ -1,7 +1,7 @@
 package commands;
 
 import dataGroup.DataGroup;
-import dataGroup.Person;
+import model.Person;
 
 public class GetPersonsByGroupCommand implements Command{
 

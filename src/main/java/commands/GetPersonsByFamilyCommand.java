@@ -1,6 +1,7 @@
 package commands;
 
 import dataGroup.*;
+import model.Person;
 
 public class GetPersonsByFamilyCommand implements Command {
     private final String family;
