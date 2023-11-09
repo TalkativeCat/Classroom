@@ -25,4 +25,5 @@ public class DataGroup<T> {
         }
         return sortedMap.get(variable).toArray(new Person[0]);
     }
+
 }

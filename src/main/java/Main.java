@@ -1,21 +1,14 @@
-import com.google.gson.Gson;
-import commands.CommandBuilder;
 import dataGroup.DataGroup;
 import model.Person;
-import model.PersonAwerageGrade;
-import servlets.commands.AverageStudentGradeByClass;
 
-
-import java.util.Arrays;
-
-public class MainClass {
+public class Main {
 
     public static void main(String[] args) {
-//        DataGroup<Integer> dataGroupGroup = new DataGroup<>();
-//        Person[] persons = dataGroupGroup.getPersons(Person::getGroup, 10);
-//        for (Person s : persons) {
-//            System.out.println(s.getName());
-//        }
+        DataGroup<Integer> dataGroupGroup = new DataGroup<>();
+        Person[] persons = dataGroupGroup.getPersons(Person::getGroup, 10);
+        for (Person s : persons) {
+            System.out.println(s.getPersonId() + s.getName() + s.getFamily());
+        }
 
 //        if (args.length == 0) {
 //            System.out.println("Вы не ввели ни одной команды");
@@ -25,6 +18,9 @@ public class MainClass {
 //            CommandBuilder commandBuilder = new CommandBuilder();
 //            commandBuilder.selectCommand(command, args);
 //        }
+    }
+    public void test() {
+
     }
 
 }

@@ -10,12 +10,12 @@ import java.util.List;
 
 public class Reader implements DataLoader {
 
-    public List<Person> loadDataFromCsv() {
-        ArrayList<Person> personList = new ArrayList<>();
-
+    ArrayList<Person> personList = new ArrayList<>();
+    public void loadDataFromCsv() {
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Денис\\IdeaProjects\\Classroom\\students.csv"))) {
             br.readLine();
             String line;
+            int personId = 0;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(";");
                 String family = data[0];
@@ -28,12 +28,21 @@ public class Reader implements DataLoader {
                 int literature = Integer.parseInt(data[7]);
                 int geometry = Integer.parseInt(data[8]);
                 int informatics = Integer.parseInt(data[9]);
-                Person person = new Person(family, name, age, group, physics, mathematics, rus, literature, geometry, informatics);
+                Person person = new Person(personId, family, name, age, group, physics, mathematics, rus, literature, geometry, informatics);
                 personList.add(person);
+                personId += 1;
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return personList;
+    }
+    public List<Person> getCashedPersonList() {
+        if (personList.isEmpty()) {
+            loadDataFromCsv();
+            return personList;
+        }
+        else {
+            return personList;
+        }
     }
 }

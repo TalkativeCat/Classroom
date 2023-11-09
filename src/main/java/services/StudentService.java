@@ -14,7 +14,7 @@ public class StudentService {
     }
     public List<Person> getStudents() {
 
-        return dataLoader.loadDataFromCsv();
+        return dataLoader.getCashedPersonList();
     }
 
 }

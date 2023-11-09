@@ -5,5 +5,5 @@ import model.Person;
 import java.util.List;
 
 public interface DataLoader {
-    List<Person> loadDataFromCsv();
+    List<Person> getCashedPersonList();
 }

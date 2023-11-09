@@ -6,9 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.PersonAwerageGrade;
+import servlets.responseModel.ResponseAverageStudentGradeByClass;
 import servlets.commands.AverageStudentGradeByClass;
-import servlets.commands.RequestPerson;
+import servlets.requestModel.RequestAverageStudentGradeByClass;
 
 import java.io.IOException;
 
@@ -19,13 +19,13 @@ public class AverageStudentGradeByClassServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var mapper = new ObjectMapper();
-        RequestPerson requestPerson = null;
+        RequestAverageStudentGradeByClass requestPerson = null;
         try (var input = request.getInputStream()) {
-            requestPerson = mapper.readValue(new String(input.readAllBytes()), RequestPerson.class);
+            requestPerson = mapper.readValue(new String(input.readAllBytes()), RequestAverageStudentGradeByClass.class);
         }
         AverageStudentGradeByClass studentGrades = new AverageStudentGradeByClass();
 
-        PersonAwerageGrade[] grades = studentGrades.getGrades(requestPerson.getGroup());
+        ResponseAverageStudentGradeByClass[] grades = studentGrades.getGrades(requestPerson.getGroup());
 
         try (var output = response.getWriter()) {
             response.setContentType("application/json; charset=UTF-8");
