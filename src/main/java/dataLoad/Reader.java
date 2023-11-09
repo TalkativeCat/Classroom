@@ -13,7 +13,7 @@ public class Reader implements DataLoader {
     public List<Person> loadDataFromCsv() {
         ArrayList<Person> personList = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("students.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Денис\\IdeaProjects\\Classroom\\students.csv"))) {
             br.readLine();
             String line;
             while ((line = br.readLine()) != null) {
