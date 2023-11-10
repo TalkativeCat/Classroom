@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Reader implements DataLoader {
 
-    ArrayList<Person> personList = new ArrayList<>();
+    public final ArrayList<Person> personList = new ArrayList<>();
     public void loadDataFromCsv() {
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Денис\\IdeaProjects\\Classroom\\students.csv"))) {
             br.readLine();
@@ -45,4 +45,5 @@ public class Reader implements DataLoader {
             return personList;
         }
     }
+
 }

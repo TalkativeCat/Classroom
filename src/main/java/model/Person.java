@@ -71,4 +71,28 @@ public class Person {
     public int getInformatics() {
         return informatics;
     }
+
+    public void setPhysics(int physics) {
+        this.physics = physics;
+    }
+
+    public void setMathematics(int mathematics) {
+        this.mathematics = mathematics;
+    }
+
+    public void setRus(int rus) {
+        this.rus = rus;
+    }
+
+    public void setLiterature(int literature) {
+        this.literature = literature;
+    }
+
+    public void setGeometry(int geometry) {
+        this.geometry = geometry;
+    }
+
+    public void setInformatics(int informatics) {
+        this.informatics = informatics;
+    }
 }
