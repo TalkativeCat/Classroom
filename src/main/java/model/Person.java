@@ -1,5 +1,8 @@
 package model;
 
+import lombok.Data;
+
+@Data
 public class Person {
     int personId;
     String family;
@@ -27,72 +30,4 @@ public class Person {
         this.informatics = informatics;
     }
 
-
-    public int getPersonId() {
-        return personId;
-    }
-
-    public String getFamily() {
-        return family;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public int getGroup() {
-        return group;
-    }
-
-    public int getPhysics() {
-        return physics;
-    }
-
-    public int getMathematics() {
-        return mathematics;
-    }
-
-    public int getRus() {
-        return rus;
-    }
-
-    public int getLiterature() {
-        return literature;
-    }
-
-    public int getGeometry() {
-        return geometry;
-    }
-
-    public int getInformatics() {
-        return informatics;
-    }
-
-    public void setPhysics(int physics) {
-        this.physics = physics;
-    }
-
-    public void setMathematics(int mathematics) {
-        this.mathematics = mathematics;
-    }
-
-    public void setRus(int rus) {
-        this.rus = rus;
-    }
-
-    public void setLiterature(int literature) {
-        this.literature = literature;
-    }
-
-    public void setGeometry(int geometry) {
-        this.geometry = geometry;
-    }
-
-    public void setInformatics(int informatics) {
-        this.informatics = informatics;
-    }
 }
