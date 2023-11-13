@@ -1,4 +1,5 @@
 import commands.CommandBuilder;
+import org.springframework.boot.SpringApplication;
 
 
 import java.util.Arrays;
@@ -21,14 +22,14 @@ public class Main {
 
 
 
-        if (args.length == 0) {
-            System.out.println("Вы не ввели ни одной команды");
-        } else {
-            String command = args[0];
-            args = Arrays.copyOfRange(args, 1, args.length);
-            CommandBuilder commandBuilder = new CommandBuilder();
-            commandBuilder.selectCommand(command, args);
-        }
+//        if (args.length == 0) {
+//            System.out.println("Вы не ввели ни одной команды");
+//        } else {
+//            String command = args[0];
+//            args = Arrays.copyOfRange(args, 1, args.length);
+//            CommandBuilder commandBuilder = new CommandBuilder();
+//            commandBuilder.selectCommand(command, args);
+//        }
     }
 
 }

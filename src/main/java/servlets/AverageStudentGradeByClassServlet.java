@@ -12,27 +12,27 @@ import servlets.requestModel.RequestAverageStudentGradeByClass;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/averageStudentGradeByClass"})
+//@WebServlet(urlPatterns = {"/averageStudentGradeByClass"})
 public class AverageStudentGradeByClassServlet extends HttpServlet {
 
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        var mapper = new ObjectMapper();
-        RequestAverageStudentGradeByClass requestPerson = null;
-        try (var input = request.getInputStream()) {
-            requestPerson = mapper.readValue(new String(input.readAllBytes()), RequestAverageStudentGradeByClass.class);
-        }
-        AverageStudentGradeByClass studentGrades = new AverageStudentGradeByClass();
-
-        ResponseAverageStudentGradeByClass[] grades = studentGrades.getGrades(requestPerson.getGroup());
-
-        try (var output = response.getWriter()) {
-            response.setContentType("application/json; charset=UTF-8");
-            output.write(mapper.writeValueAsString(grades));
-            output.flush();
-        }
-
-    }
+//
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        var mapper = new ObjectMapper();
+//        RequestAverageStudentGradeByClass requestPerson = null;
+//        try (var input = request.getInputStream()) {
+//            requestPerson = mapper.readValue(new String(input.readAllBytes()), RequestAverageStudentGradeByClass.class);
+//        }
+//        AverageStudentGradeByClass studentGrades = new AverageStudentGradeByClass();
+//
+//        ResponseAverageStudentGradeByClass[] grades = studentGrades.getGrades(requestPerson.getGroup());
+//
+//        try (var output = response.getWriter()) {
+//            response.setContentType("application/json; charset=UTF-8");
+//            output.write(mapper.writeValueAsString(grades));
+//            output.flush();
+//        }
+//
+//    }
 
 }
