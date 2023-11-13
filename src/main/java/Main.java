@@ -18,6 +18,9 @@ public class Main {
 //            System.out.println(s.getPersonId() + s.getName() + s.getFamily());
 //        }
 
+
+
+
         if (args.length == 0) {
             System.out.println("Вы не ввели ни одной команды");
         } else {
