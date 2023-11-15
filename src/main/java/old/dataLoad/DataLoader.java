@@ -1,6 +1,6 @@
-package dataLoad;
+package old.dataLoad;
 
-import model.Person;
+import old.model.Person;
 
 import java.util.List;
 

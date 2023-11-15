@@ -1,8 +1,8 @@
 package db;
 
-import model.Person;
+import old.model.Person;
 import services.StudentService;
-import dataLoad.Reader;
+import old.dataLoad.Reader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

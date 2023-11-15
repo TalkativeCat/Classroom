@@ -1,7 +1,7 @@
-package dataGroup;
+package old.dataGroup;
 
-import dataLoad.Reader;
-import model.Person;
+import old.dataLoad.Reader;
+import old.model.Person;
 import services.StudentService;
 
 import java.util.ArrayList;

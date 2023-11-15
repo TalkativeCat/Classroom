@@ -1,4 +1,4 @@
-package commands;
+package old.commands;
 
 import db.ConnectionManager;
 import db.GetStatistics;

@@ -1,7 +1,7 @@
-package commands;
+package old.commands;
 
-import dataGroup.DataGroup;
-import model.Person;
+import old.dataGroup.DataGroup;
+import old.model.Person;
 
 public class GetPersonsByAgeCommand implements Command {
 

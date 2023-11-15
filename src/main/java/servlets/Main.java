@@ -2,7 +2,6 @@ package servlets;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories
@@ -13,18 +12,6 @@ public class Main {
         SpringApplication.run(Main.class);
     }
 
-
-//        RequestChangeGradeForSubject requestChangeGradeForSubject = new RequestChangeGradeForSubject(99, "physics", 5);
-//        ChangeGradeForSubject changeGradeForSubject = new ChangeGradeForSubject();
-//        System.out.println(changeGradeForSubject.changeGrade(requestChangeGradeForSubject).getPersonId() + " " + changeGradeForSubject.changeGrade(requestChangeGradeForSubject).getOldGrade() + " " + changeGradeForSubject.changeGrade(requestChangeGradeForSubject).getNewGrade());
-//
-
-
-//        DataGroup<Integer> dataGroupGroup = new DataGroup<>();
-//        Person[] persons = dataGroupGroup.getPersons(Person::getGroup, 10);
-//        for (Person s : persons) {
-//            System.out.println(s.getPersonId() + s.getName() + s.getFamily());
-//        }
 
 //    public static void main(String[] args) {
 //        if (args.length == 0) {

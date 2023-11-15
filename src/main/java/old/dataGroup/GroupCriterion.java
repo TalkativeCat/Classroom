@@ -1,6 +1,6 @@
-package dataGroup;
+package old.dataGroup;
 
-import model.Person;
+import old.model.Person;
 
 @FunctionalInterface
 public interface GroupCriterion<T> {

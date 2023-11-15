@@ -1,6 +1,5 @@
-package commands;
+package old.commands;
 
-import db.GetStatistics;
 import db.Init;
 
 public class InitDB implements Command{

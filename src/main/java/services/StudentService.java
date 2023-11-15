@@ -1,10 +1,9 @@
 package services;
 
-import dataLoad.DataLoader;
-import model.Person;
+import old.dataLoad.DataLoader;
+import old.model.Person;
 
 import java.util.List;
-import java.util.function.Function;
 
 public class StudentService {
 

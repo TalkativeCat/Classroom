@@ -1,4 +1,4 @@
-package commands;
+package old.commands;
 
 import db.GetStatistics;
 public class GetAverageGradesDB {
