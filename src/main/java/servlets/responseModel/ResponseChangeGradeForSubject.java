@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ResponseChangeGradeForSubject {
     String status;
-    int personId;
+    long personId;
     String subject;
     int oldGrade;
     int newGrade;

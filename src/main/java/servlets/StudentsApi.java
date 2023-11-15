@@ -1,22 +1,12 @@
 package servlets;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import db.model.Students;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import services.GetStatisticsService;
-import services.interfaces.EducationalPlansRepository;
 import services.interfaces.StudentGradesRepository;
 import services.interfaces.StudentsRepository;
-import servlets.commands.AverageStudentGradeByClass;
-import servlets.commands.ChangeGradeForSubject;
 import servlets.requestModel.RequestAverageStudentGradeByClass;
 import servlets.requestModel.RequestChangeGradeForSubject;
 import servlets.responseModel.ResponseAverageStudentGradeByClass;
@@ -34,8 +24,8 @@ public class StudentsApi {
 
     @PostMapping("changeGradeForSubject")
     public @ResponseBody SimpleResponse<ResponseChangeGradeForSubject> changeGradeForSubject(@RequestBody RequestChangeGradeForSubject req) {
-        ChangeGradeForSubject changeGradeForSubject = new ChangeGradeForSubject();
-        var result = changeGradeForSubject.changeGrade(req);
+        GetStatisticsService getStatisticsService = new GetStatisticsService(studentsRepository, studentGradesRepository);
+        var result = getStatisticsService.changeGrade(req);
         return new SimpleResponse<>(result);
     }
 
