@@ -21,12 +21,12 @@ public class GetStatisticsService {
     private final StudentsRepository studentsRepository;
     private final StudentGradesRepository studentGradesRepository;
 
-    public List<ResponseAverageStudentGradeByClass> getAverageStudentGrade(int grade) {
-        List<Students> students = studentsRepository.findByGroupName(grade);
+    public List<ResponseAverageStudentGradeByClass> getAverageStudentGrade(int group) {
+        List<Students> students = studentsRepository.findByGroupName(group);
         List<ResponseAverageStudentGradeByClass> responseList = new ArrayList<>();
 
         for (Students student : students) {
-            List<StudentGrades> studentGrades = studentGradesRepository.findByStudentsGroupName(grade);
+            List<StudentGrades> studentGrades = studentGradesRepository.findByStudentsGroupName(student.getId());
             double averageGrade = calculateAverageGrade(studentGrades);
 
             ResponseAverageStudentGradeByClass response = new ResponseAverageStudentGradeByClass(student.getName(), student.getFamily(), averageGrade);

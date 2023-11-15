@@ -24,4 +24,16 @@ public class StudentGrades {
     private Students students;
 
 
+    public StudentGrades(int physics, int mathematics, int rus, int literature, int geometry, int informatics) {
+        this.physics = physics;
+        this.mathematics = mathematics;
+        this.rus = rus;
+        this.literature = literature;
+        this.geometry = geometry;
+        this.informatics = informatics;
+    }
+
+    public StudentGrades() {
+
+    }
 }

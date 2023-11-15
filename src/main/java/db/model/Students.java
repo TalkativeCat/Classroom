@@ -28,4 +28,14 @@ public class Students {
     private EducationalPlans educationalPlans;
 
 
+    public Students(Long id, String name, String family, int group_name) {
+        this.id = id;
+        this.name = name;
+        this.family = family;
+        this.group_name = group_name;
+    }
+
+    public Students() {
+
+    }
 }
