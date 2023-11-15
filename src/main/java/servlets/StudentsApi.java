@@ -3,10 +3,15 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import services.GetStatisticsService;
+import services.interfaces.EducationalPlansRepository;
+import services.interfaces.StudentGradesRepository;
+import services.interfaces.StudentsRepository;
 import servlets.commands.AverageStudentGradeByClass;
 import servlets.commands.ChangeGradeForSubject;
 import servlets.requestModel.RequestAverageStudentGradeByClass;
@@ -14,22 +19,28 @@ import servlets.requestModel.RequestChangeGradeForSubject;
 import servlets.responseModel.ResponseAverageStudentGradeByClass;
 import servlets.responseModel.ResponseChangeGradeForSubject;
 
+import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class StudentsApi {
+    private final StudentsRepository studentsRepository;
+    private final StudentGradesRepository studentGradesRepository;
+    private final EducationalPlansRepository educationalPlansRepository;
 
     @PostMapping("changeGradeForSubject")
-    public SimpleResponse<ResponseChangeGradeForSubject> changeGradeForSubject(@RequestBody RequestChangeGradeForSubject req) {
+    public @ResponseBody SimpleResponse<ResponseChangeGradeForSubject> changeGradeForSubject(@RequestBody RequestChangeGradeForSubject req) {
         ChangeGradeForSubject changeGradeForSubject = new ChangeGradeForSubject();
         var result = changeGradeForSubject.changeGrade(req);
         return new SimpleResponse<>(result);
     }
-    @GetMapping ("averageStudentGradeByClass")
-    public SimpleResponse<ResponseAverageStudentGradeByClass[]> averageStudentGradeByClass(@RequestBody RequestAverageStudentGradeByClass group) {
-        AverageStudentGradeByClass averageStudentGradeByClass = new AverageStudentGradeByClass();
-        var result = averageStudentGradeByClass.getGrades(group.getGroup());
+
+    @GetMapping("averageStudentGradeByClass")
+    public @ResponseBody SimpleResponse <List<ResponseAverageStudentGradeByClass>> averageStudentGradeByClass(@RequestBody RequestAverageStudentGradeByClass group) {
+        GetStatisticsService getStatisticsService = new GetStatisticsService(studentsRepository, studentGradesRepository);
+        var result = getStatisticsService.getAverageStudentGrade(group.getGroup());
         return new SimpleResponse<>(result);
     }
 
