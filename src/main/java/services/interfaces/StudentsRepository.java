@@ -15,9 +15,9 @@ public interface StudentsRepository extends JpaRepository<Students, Long> {
             s.id,
             s.name,
             s.family,
-            s.group_name
+            s.groupName
         )
-          from Students s where s.group_name = :query
+          from Students s where s.groupName = :query
     """)
     List<Students> findByGroupName(@Param("query") int group);
 }
