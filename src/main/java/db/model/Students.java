@@ -19,20 +19,20 @@ public class Students {
     @NotNull
     String family;
     int age;
-    int group_name;
+    @Column(name = "group_name")
+    int groupName;
 
-    @OneToOne(mappedBy = "students")
+    @OneToOne(mappedBy = "id")
     private StudentGrades studentGrades;
 
-    @OneToOne(mappedBy = "students")
+    @OneToOne(mappedBy = "group_name")
     private EducationalPlans educationalPlans;
 
-
-    public Students(Long id, String name, String family, int group_name) {
+    public Students(Long id, String name, String family, int groupName) {
         this.id = id;
         this.name = name;
         this.family = family;
-        this.group_name = group_name;
+        this.groupName = groupName;
     }
 
     public Students() {

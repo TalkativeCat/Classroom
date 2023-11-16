@@ -9,13 +9,12 @@ import lombok.Setter;
 @Entity
 @Table(name = "t_educational_plans")
 public class EducationalPlans {
+
     @Id
     @GeneratedValue
     private Long id;
-    int group_name;
-    @OneToOne
-    @JoinColumn(name = "group_name")
-    private Students students;
+    @Column(name = "group_name")
+    int groupName;
     boolean physics;
     boolean mathematics;
     boolean rus;

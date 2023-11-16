@@ -17,6 +17,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RestController
 @RequestMapping("/api")
 public class StudentsApi {
     public final StudentsRepository studentsRepository;
@@ -30,7 +31,7 @@ public class StudentsApi {
     }
 
     @PostMapping("averageStudentGradeByClass")
-    public SimpleResponse <List<ResponseAverageStudentGradeByClass>> averageStudentGradeByClass(@RequestBody RequestAverageStudentGradeByClass req) {
+    public SimpleResponse<List<ResponseAverageStudentGradeByClass>> averageStudentGradeByClass(@RequestBody RequestAverageStudentGradeByClass req) {
         GetStatisticsService getStatisticsService = new GetStatisticsService(studentsRepository, studentGradesRepository);
         var result = getStatisticsService.getAverageStudentGrade(req.getGroup());
         return new SimpleResponse<>(result);
