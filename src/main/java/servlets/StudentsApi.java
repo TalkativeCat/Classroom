@@ -21,7 +21,7 @@ public class StudentsApi {
     public final StudentsRepository studentsRepository;
     public final StudentGradesRepository studentGradesRepository;
 
-    @PostMapping("changeGradeForSubject")
+    @PutMapping("changeGradeForSubject")
     public SimpleResponse<ResponseChangeGradeForSubject> changeGradeForSubject(@RequestBody RequestChangeGradeForSubject req) {
         GetStatisticsService getStatisticsService = new GetStatisticsService(studentsRepository, studentGradesRepository);
         var result = getStatisticsService.changeGrade(req);
