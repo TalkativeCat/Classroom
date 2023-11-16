@@ -19,7 +19,7 @@ public interface StudentGradesRepository extends JpaRepository<StudentGrades, Lo
             s.geometry,
             s.informatics
         )
-          from StudentGrades s where s.id = :query
+          from StudentGrades s where s.id = :id
     """)
-    List<StudentGrades> findByStudentsGroupName(@Param("query") long id);
+    List<StudentGrades> findByStudentsGroupName(@Param("id") long id);
 }
