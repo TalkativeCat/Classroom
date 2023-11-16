@@ -30,10 +30,10 @@ public class StudentsApi {
         return new SimpleResponse<>(result);
     }
 
-    @PostMapping("averageStudentGradeByClass")
-    public SimpleResponse<List<ResponseAverageStudentGradeByClass>> averageStudentGradeByClass(@RequestBody RequestAverageStudentGradeByClass req) {
+    @GetMapping("averageStudentGradeByClass")
+    public SimpleResponse<List<ResponseAverageStudentGradeByClass>> averageStudentGradeByClass(@RequestParam("group") int group) {
         GetStatisticsService getStatisticsService = new GetStatisticsService(studentsRepository, studentGradesRepository);
-        var result = getStatisticsService.getAverageStudentGrade(req.getGroup());
+        var result = getStatisticsService.getAverageStudentGrade(group);
         return new SimpleResponse<>(result);
     }
 
