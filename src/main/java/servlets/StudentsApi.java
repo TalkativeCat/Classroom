@@ -1,13 +1,11 @@
 package servlets;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import services.GetStatisticsService;
 import services.interfaces.StudentGradesRepository;
 import services.interfaces.StudentsRepository;
-import servlets.requestModel.RequestAverageStudentGradeByClass;
 import servlets.requestModel.RequestChangeGradeForSubject;
 import servlets.responseModel.ResponseAverageStudentGradeByClass;
 import servlets.responseModel.ResponseChangeGradeForSubject;
