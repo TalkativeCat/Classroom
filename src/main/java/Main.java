@@ -1,33 +1,86 @@
-import commands.CommandBuilder;
 
 
-import java.util.Arrays;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
 
     public static void main(String[] args) {
-//        RequestChangeGradeForSubject requestChangeGradeForSubject = new RequestChangeGradeForSubject(99, "physics", 5);
-//        ChangeGradeForSubject changeGradeForSubject = new ChangeGradeForSubject();
-//        System.out.println(changeGradeForSubject.changeGrade(requestChangeGradeForSubject).getPersonId() + " " + changeGradeForSubject.changeGrade(requestChangeGradeForSubject).getOldGrade() + " " + changeGradeForSubject.changeGrade(requestChangeGradeForSubject).getNewGrade());
-//
+        int width = 0, height = 0;
+        double realPart = 0, imaginaryPart = 0;
+        String outputFileName = "";
 
+        for (int i = 0; i < args.length; i++) {
+            switch (args[i]) {
+                case "-d":
+                    String[] dimensions = args[++i].split(";");
+                    width = Integer.parseInt(dimensions[0]);
+                    height = Integer.parseInt(dimensions[1]);
+                    break;
+                case "-c":
+                    String[] constants = args[++i].split(";");
+                    realPart = Double.parseDouble(constants[0]);
+                    imaginaryPart = Double.parseDouble(constants[1]);
+                    break;
+                case "-o":
+                    outputFileName = args[++i];
+                    break;
+            }
+        }
 
-//        DataGroup<Integer> dataGroupGroup = new DataGroup<>();
-//        Person[] persons = dataGroupGroup.getPersons(Person::getGroup, 10);
-//        for (Person s : persons) {
-//            System.out.println(s.getPersonId() + s.getName() + s.getFamily());
-//        }
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
+        for (int y = 0; y < height; y++) {
+            final int row = y;
+            int finalWidth = width;
+            int finalHeight = height;
+            double finalRealPart = realPart;
+            double finalImaginaryPart = imaginaryPart;
+            executor.execute(() -> {
+                for (int x = 0; x < finalWidth; x++) {
+                    int color = calculatePixelColor(x, row, finalWidth, finalHeight, finalRealPart, finalImaginaryPart);
+                    image.setRGB(x, row, color);
+                }
+            });
+        }
 
+        executor.shutdown();
+        while (!executor.isTerminated()) {
+            // Ждем, когда завершится выполнение всех потоков
+        }
 
-        if (args.length == 0) {
-            System.out.println("Вы не ввели ни одной команды");
+        try {
+            File output = new File(outputFileName);
+            ImageIO.write(image, "png", output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static int calculatePixelColor(int x, int y, int width, int height, double realPart, double imaginaryPart) {
+        double zx = 1.5 * (x - width / 2.0) / (0.5 * width);
+        double zy = (y - height / 2.0) / (0.5 * height);
+        double escapeRadius = 2;
+        int maxIterations = 300;
+        int iteration = 0;
+
+        while (zx * zx + zy * zy < escapeRadius * escapeRadius && iteration < maxIterations) {
+            double xTemp = zx * zx - zy * zy + realPart;
+            zy = 2.0 * zx * zy + imaginaryPart;
+            zx = xTemp;
+            iteration++;
+        }
+
+        if (iteration == maxIterations) {
+            return 0x000000;
         } else {
-            String command = args[0];
-            args = Arrays.copyOfRange(args, 1, args.length);
-            CommandBuilder commandBuilder = new CommandBuilder();
-            commandBuilder.selectCommand(command, args);
+            return 0xFFFFFF;
         }
     }
 
