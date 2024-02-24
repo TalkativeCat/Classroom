@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         if (args.length < 6 || !args[0].equals("-a") || !args[2].equals("-h") || !args[4].equals("-l")) {
-            System.out.println("Используйте следующий шаблон при запуске программы: -a <алгоритм шифрования> -h <hash> -l <длина>");
+            System.out.println("Используйте следующий шаблон при запуске программы: -a <алгоритм шифрования> -h <hash> -l <длина последовательности цифр>");
             return;
         }
 
